@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     flex: 1,
   },
+  bold: {
+    fontWeight: 600,
+  },
 }));
 
 const PhotoCard = ({
@@ -73,7 +76,7 @@ const PhotoCard = ({
     <a href={link} style={{ textDecoration: "none" }}>
       <Paper className={classes.paper}>
         <img className={classes.media} alt="" src={media.m} />
-        <Typography gutterBottom variant="h6" noWrap>
+        <Typography gutterBottom variant="h6" noWrap className={classes.bold}>
           {title}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
