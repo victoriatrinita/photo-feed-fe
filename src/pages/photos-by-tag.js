@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     padding: theme.spacing(2),
     margin: "auto",
+    width: "100%",
   },
   paper: {
     padding: theme.spacing(2),
