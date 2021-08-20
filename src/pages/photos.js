@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   bold: {
     fontWeight: 600,
   },
+  roundedCorner: {
+    borderRadius: "5em",
+  },
 }));
 
 const PhotoCard = ({
@@ -86,14 +89,18 @@ const PhotoCard = ({
         <Typography variant="subtitle1" gutterBottom noWrap>
           {!!tags
             ? tags.split(" ").map((el) => (
-                <Button
-                  style={{ marginRight: "20px" }}
-                  variant="contained"
-                  size="small"
-                  color="primary"
-                >
-                  {el}
-                </Button>
+                <RouterLink style={{ textDecoration: "none" }} to={`/${el}`}>
+                  <Button
+                    style={{ marginRight: "20px" }}
+                    variant="contained"
+                    size="small"
+                    color="secondary"
+                    className={classes.roundedCorner}
+                    disableElevation
+                  >
+                    {el}
+                  </Button>
+                </RouterLink>
               ))
             : ""}
         </Typography>
