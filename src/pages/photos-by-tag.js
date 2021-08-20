@@ -42,11 +42,32 @@ const PhotoCard = ({
   date_taken,
   media,
   tags,
-  rating,
+  published,
   link,
   author,
 }) => {
   const classes = useStyles();
+
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const prettyDate = (currDate) => {
+    let now = new Date(currDate);
+    return (
+      months[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear()
+    );
+  };
 
   return (
     <a href={link} style={{ textDecoration: "none" }}>
@@ -56,7 +77,8 @@ const PhotoCard = ({
           {title}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          Genre: {rating}
+          Captured on{" "}
+          {prettyDate(date_taken.substring(0, date_taken.indexOf("T")))}
         </Typography>
         <Typography variant="subtitle1" gutterBottom noWrap>
           tags:{" "}
@@ -74,7 +96,8 @@ const PhotoCard = ({
             : ""}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
-          Rating: {date_taken}
+          Published on{" "}
+          {prettyDate(published.substring(0, published.indexOf("T")))}
         </Typography>
         <Typography variant="body2" color="textSecondary"></Typography>
       </Paper>
