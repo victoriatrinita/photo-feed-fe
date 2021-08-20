@@ -8,21 +8,20 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/InputBase";
 import Grid from "@material-ui/core/Grid";
-import ButtonBase from "@material-ui/core/ButtonBase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: 1,
   },
+  grid: {
+    padding: theme.spacing(2),
+    margin: "auto",
+  },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
-    width: "90%",
     height: "100%",
-  },
-  image: {
-    width: "100%",
   },
   media: {
     height: 250,
@@ -49,11 +48,9 @@ const PhotoCard = ({
   const classes = useStyles();
 
   return (
-    <Grid item xs md={3} sm={4}>
+    <a href={link} style={{ textDecoration: "none" }}>
       <Paper className={classes.paper}>
-        <ButtonBase className={classes.image} href={link}>
-          <img className={classes.media} alt="" src={media.m} />
-        </ButtonBase>
+        <img className={classes.media} alt="" src={media.m} />
         <Typography gutterBottom variant="h6" noWrap>
           {title}
         </Typography>
@@ -80,7 +77,7 @@ const PhotoCard = ({
         </Typography>
         <Typography variant="body2" color="textSecondary"></Typography>
       </Paper>
-    </Grid>
+    </a>
   );
 };
 
@@ -158,10 +155,16 @@ const PhotosGrid = () => {
             </Button>
           </RouterLink>
         </div>
-
-        <Grid container spacing={2} alignItems="stretch">
+        <Grid
+          container
+          spacing={2}
+          alignItems="stretch"
+          className={classes.grid}
+        >
           {state.photos.map((photo, index) => (
-            <PhotoCard key={photo.id + index} {...photo} />
+            <Grid item xs={12} md={3} sm={4}>
+              <PhotoCard key={photo.id + index} {...photo} />
+            </Grid>
           ))}
         </Grid>
       </div>

@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
 import Button from "@material-ui/core/Button";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -15,14 +14,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: 1,
   },
+  grid: {
+    padding: theme.spacing(2),
+    margin: "auto",
+  },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
-    width: "90%",
     height: "100%",
-  },
-  image: {
-    width: "100%",
   },
   media: {
     height: 250,
@@ -49,11 +48,9 @@ const PhotoCard = ({
   const classes = useStyles();
 
   return (
-    <Grid item xs md={3} sm={4}>
+    <a href={link} style={{ textDecoration: "none" }}>
       <Paper className={classes.paper}>
-        <ButtonBase className={classes.image} href={link}>
-          <img className={classes.media} alt="" src={media.m} />
-        </ButtonBase>
+        <img className={classes.media} alt="" src={media.m} />
         <Typography gutterBottom variant="h6" noWrap>
           {title}
         </Typography>
@@ -80,7 +77,7 @@ const PhotoCard = ({
         </Typography>
         <Typography variant="body2" color="textSecondary"></Typography>
       </Paper>
-    </Grid>
+    </a>
   );
 };
 
@@ -91,13 +88,12 @@ const PhotosGrid = () => {
   const [state, setPhotos] = usePhotoContext();
 
   useEffect(() => {
-    getPhotosByTag(tags)
-      .then((res) => {
-        setPhotos({
-          ...state,
-          photos: res.data.response,
-        });
+    getPhotosByTag(tags).then((res) => {
+      setPhotos({
+        ...state,
+        photos: res.data.response,
       });
+    });
   }, [tags]);
 
   const keyPressHandler = (e) => {
@@ -160,9 +156,16 @@ const PhotosGrid = () => {
           </RouterLink>
         </div>
 
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={2}
+          alignItems="stretch"
+          className={classes.grid}
+        >
           {state.photos.map((photo, index) => (
-            <PhotoCard key={photo.id + index} {...photo} />
+            <Grid item xs={12} md={3} sm={4}>
+              <PhotoCard key={photo.id + index} {...photo} />
+            </Grid>
           ))}
         </Grid>
       </div>
