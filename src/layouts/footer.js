@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    height: "200px",
+    height: "100px",
   },
   footer: {
     padding: theme.spacing(3, 2),
@@ -36,7 +36,7 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div data-testid="footer" className={classes.root}>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Copyright />
