@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
   roundedCorner: {
     borderRadius: "5em",
   },
+  noDecoration: {
+    textDecoration: "none",
+  },
   anchor: {
     textDecoration: "none",
     color: "#7a7a7a",
@@ -81,7 +84,7 @@ const PhotoCard = ({
   };
 
   return (
-    <a href={link} style={{ textDecoration: "none" }}>
+    <a href={link} className={classes.noDecoration}>
       <Paper className={classes.paper}>
         <img className={classes.media} alt="" src={media.m} />
         <Typography gutterBottom variant="h6" noWrap className={classes.bold}>
@@ -94,7 +97,7 @@ const PhotoCard = ({
         <Typography variant="subtitle1" gutterBottom noWrap>
           {!!tags
             ? tags.split(" ").map((el) => (
-                <RouterLink style={{ textDecoration: "none" }} to={`/${el}`}>
+                <RouterLink className={classes.noDecoration} to={`/${el}`}>
                   <Button
                     style={{ marginRight: "20px" }}
                     variant="contained"
@@ -190,7 +193,7 @@ const PhotosGrid = () => {
               onKeyDown={keyPressHandler}
             />
           </Paper>
-          <RouterLink style={{ textDecoration: "none" }} to={`/${search}`}>
+          <RouterLink className={classes.noDecoration} to={`/${search}`}>
             <Button
               style={{ marginRight: "20px" }}
               variant="contained"
