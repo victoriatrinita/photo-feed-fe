@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
   roundedCorner: {
     borderRadius: "5em",
   },
+  anchor: {
+    textDecoration: "none",
+    color: "#7a7a7a",
+  },
 }));
 
 const PhotoCard = ({
@@ -51,6 +55,7 @@ const PhotoCard = ({
   published,
   link,
   author,
+  author_id,
 }) => {
   const classes = useStyles();
 
@@ -108,7 +113,15 @@ const PhotoCard = ({
           Published on{" "}
           {prettyDate(published.substring(0, published.indexOf("T")))}
         </Typography>
-        <Typography variant="body2" color="textSecondary"></Typography>
+        <Typography variant="body2" gutterBottom>
+          {"By "}
+          <a
+            href={`https://www.flickr.com/photos/${author_id}`}
+            className={classes.anchor}
+          >
+            {author.match(/(?<=")(.*?)(?=")/g)}
+          </a>
+        </Typography>
       </Paper>
     </a>
   );
