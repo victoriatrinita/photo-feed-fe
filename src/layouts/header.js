@@ -25,7 +25,7 @@ const Header = () => {
   const classes = useStyles();
   return (
     <>
-      <div className={classes.root}>
+      <div data-testid="header" className={classes.root}>
         <CssBaseline />
         <AppBar position="static">
           <Toolbar>
