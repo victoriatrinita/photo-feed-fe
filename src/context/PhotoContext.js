@@ -1,21 +1,18 @@
 import React, { useState, createContext, useContext } from "react";
 
 const photoState = {
-    photo: {
-        "title": "",
-        "description": "",
-        "year": null,
-        "duration": null,
-        "genre": "",
-        "rating": null,
-        "review": "",
-        "image_url": ""
-    },
-    photos: [],
-    rating: null,
+  photo: {
+    title: "",
+    description: "",
     year: null,
-    genre: null,
-}
+    duration: null,
+    genre: "",
+    rating: null,
+    review: "",
+    image_url: "",
+  },
+  photos: [],
+};
 
 export const PhotoContext = createContext(photoState);
 
